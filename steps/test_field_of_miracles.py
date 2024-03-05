@@ -5,17 +5,19 @@ import field_of_miracles
 
 @given('Generate word by seed {number}')
 def step_generate_given(context, number):
-    random.seed(number)
+    context.seed = number
 
 
 @when('Print guess word')
 def step_generate_when(context):
-    context.result = field_of_miracles.FieldOfMiracles().generate_word()
+    random.seed(context.seed)
+    context.miracles = field_of_miracles.FieldOfMiracles()
 
 
 @then('Get printed guess word')
 def step_generate_then(context):
-    assert context.result == 'Слово длинной 3 сгенерированно'
+    context.result = context.miracles.generate_word()
+    assert context.result == 'Слово длинной 7 сгенерированно'
 
 
 @given('Guess letter {letter}')
