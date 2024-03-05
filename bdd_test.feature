@@ -14,3 +14,8 @@ Feature: Field of Miracles
     Given Guess letter п
     When Check input letter
     Then print letter not guess
+
+  Scenario: Not generated
+    Given Guess letter а not generated
+    When Check input letter not generated
+    Then Print error
